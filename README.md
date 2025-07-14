@@ -11,3 +11,9 @@ There are some important theorical concepts we should take into account:
 4. Loss given default: Is the share of an asset that is lost when the borrower defaults.
 
 It is important to understand that the ultimate objective of the lender is to minimize the expected loss. To achieve this, they must reduce one or more of the factors that influence expected loss.
+# How it's used?
+Credit Scores are used to determine the following aspects under Loan portfolios:
+1. Approval -> Determine if the loan should be approved or not
+2. Pricing -> Which is the right interest rate the loan should have
+3. Cross Shell -> It's affordable for the entity to sell another loan
+4. Refinance -> Is a change in the interest rate required?
