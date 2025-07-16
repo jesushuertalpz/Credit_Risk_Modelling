@@ -1,0 +1,83 @@
+import pandas as pd
+import numpy as np
+import random
+
+# Set seed for reproducibility so that the same random data is generated every time
+random.seed(17)
+np.random.seed(17)
+
+# Define the number of rows (i.e., customers) in the synthetic dataset
+n_rows = 100_000  # Large dataset with 100,000 entries
+
+# Define the possible values for each categorical variable
+
+# Sex of the customer (binary: male or female)
+sex_options = ['male', 'female']
+
+# Job type, representing different income or social classes
+job_options = ['unskilled', 'skilled', 'highly skilled', 'management']
+
+# Housing situation, indicating whether the customer owns, rents, or lives for free
+housing_options = ['own', 'rent', 'free']
+
+# Saving accounts balance categories — could be used as a proxy for financial stability
+savings_options = ['little', 'moderate', 'quite rich', 'rich', np.nan]  # Includes missing values
+
+# Checking account balance categories — similar to savings, shows liquidity
+checking_options = ['little', 'moderate', 'rich', np.nan]
+
+# Purpose of the credit (loan), reflecting how the customer intends to use the funds
+purpose_options = [
+    'car', 'furniture', 'education', 'business', 'vacation',
+    'repairs', 'radio/TV', 'domestic appliances'
+]
+
+# Risk label: 'good' means low credit risk, 'bad' means high credit risk
+risk_options = ['good', 'bad']
+
+# Generate synthetic data using random selections and distributions
+data = {
+    # Age of the customer (between 18 and 74)
+    'Age': np.random.randint(18, 75, n_rows),
+
+    # Randomly assign sex from the defined options
+    'Sex': np.random.choice(sex_options, n_rows),
+
+    # Randomly assign job category
+    'Job': np.random.choice(job_options, n_rows),
+
+    # Randomly assign housing status
+    'Housing': np.random.choice(housing_options, n_rows),
+
+    # Randomly assign savings account level with specified probabilities
+    'Saving accounts': np.random.choice(
+        savings_options, n_rows, p=[0.3, 0.25, 0.15, 0.1, 0.2]
+    ),
+
+    # Randomly assign checking account level with specified probabilities
+    'Checking account': np.random.choice(
+        checking_options, n_rows, p=[0.4, 0.2, 0.1, 0.3]
+    ),
+
+    # Assign a credit amount (loan size) between 500 and 20,000
+    'Credit amount': np.random.randint(500, 20000, n_rows),
+
+    # Duration of the credit in months (from 6 to 72 months)
+    'Duration': np.random.randint(6, 72, n_rows),
+
+    # Randomly assign loan purpose from the list
+    'Purpose': np.random.choice(purpose_options, n_rows),
+
+    # Assign credit risk status with 70% being "good" and 30% "bad"
+    'Risk': np.random.choice(risk_options, n_rows, p=[0.7, 0.3])
+}
+
+# Create a pandas DataFrame using the synthetic data dictionary
+df = pd.DataFrame(data)
+
+# Save the DataFrame to a CSV file for later use (e.g., modeling, analysis)
+file_path = "/mnt/data/synthetic_credit_risk_data.csv"
+df.to_csv(file_path, index=False)  # Save without the index column
+
+# Output the file path (useful in notebooks or automation)
+file_path
