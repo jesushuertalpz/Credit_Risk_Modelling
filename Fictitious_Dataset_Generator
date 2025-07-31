@@ -2,12 +2,12 @@ import pandas as pd
 import numpy as np
 import random
 
-# Set seed for reproducibility so that the same random data is generated every time
+# We have two options depending on if we want to use library random ( 1º option) or numpy (2º option)
 random.seed(17)
-np.random.seed(17)
+#np.random.seed(17)
 
 # Define the number of rows (i.e., customers) in the synthetic dataset
-n_rows = 100_000  # Large dataset with 100,000 entries
+n_rows = 100_000 
 
 # Define the possible values for each categorical variable
 
@@ -75,8 +75,8 @@ data = {
 # Create a pandas DataFrame using the synthetic data dictionary
 df = pd.DataFrame(data)
 
-# Save the DataFrame to a CSV file for later use (e.g., modeling, analysis)
-file_path = "/mnt/data/synthetic_credit_risk_data.csv"
+# Save the DataFrame to a CSV file for later use (e.g., modeling, analysis). Please, ensure to change the path to your desired location.
+file_path = r'C:\\Users\\jesus\\Desktop\\Credit Risk Modelling\\credit_risk.csv'
 df.to_csv(file_path, index=False)  # Save without the index column
 
 # Output the file path (useful in notebooks or automation)
