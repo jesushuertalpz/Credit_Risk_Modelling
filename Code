@@ -1,5 +1,0 @@
-#Here we will use the library scorecardpy for the Credit Risk Modelling, first we will import the libraries required
-pip install scorecardpy
-
-import pandas as pd
-import scorecardpy as sc
